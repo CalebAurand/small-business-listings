@@ -1,6 +1,7 @@
 import * as React from 'react';
 // import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -8,6 +9,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {Link} from 'react-router-dom'
+import cookie from 'cookie'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,8 +35,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function Home(props) {
   const [tableData, setTableData] = React.useState(props.listings)
+  const { listings, user, removeListing } = props;
+
+  let cookies = cookie.parse(document.cookie)
+  console.log('cookies', cookies)
+  let loggedInBool = cookies.loggedIn;
+  console.log(loggedInBool);
+
+  // const deleteListing = (index) => {
+  //   console.log('trying to remove', index)
+  //   removeListing(index);
+  // }
 
   return (
+    <>
+    {user && <div style={{backgroundColor: 'grey', }}>Welcome, {user.userName}</div>}
     <TableContainer sx={{height: '100vh'}} component={Paper}>
       <Table sx={{ marginTop: 10, marginBottom: 10, marginRight: 'auto', marginLeft: 'auto', width: '85vw', minWidth: 500 }} aria-label="customized table">
         <TableHead>
@@ -42,23 +58,26 @@ export default function Home(props) {
             <StyledTableCell sx={{maxWidth: 20}} align="center">Description</StyledTableCell>
             <StyledTableCell align="center">Hours</StyledTableCell>
             <StyledTableCell align="center">Address</StyledTableCell>
+            {loggedInBool && <StyledTableCell align="center">Delete</StyledTableCell>}
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {tableData.map((list) => (
-            <StyledTableRow key={list.name}>
+          {listings.map((list, index) => (
+            <StyledTableRow key={list.id}>
               <StyledTableCell component="th" sx={{fontWeight: 'bold', width: '8.2vw'}}scope="row">
-                {list.name}
+                <Link to={`/details/${list.id}`}>{list.name}</Link>
               </StyledTableCell>
               <StyledTableCell sx={{maxWidth: '25vw'}} align="left">{list.description}</StyledTableCell>
               <StyledTableCell sx={{width: '6vw', minWidth: '7vw'}} align="right">{`${list.hours.open} - ${list.hours.close}`}</StyledTableCell>
               <StyledTableCell sx={{width: '15vw'}}align="left">{list.address}</StyledTableCell>
+              {loggedInBool && <StyledTableCell align="center"><DeleteIcon onClick={()=>removeListing(index)} sx={{color: 'red', cursor: 'pointer'}}></DeleteIcon></StyledTableCell>}
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 }
 

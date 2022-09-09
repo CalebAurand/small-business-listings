@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Home from '../components/Home'
+import {removeListing} from '../redux/actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -8,4 +9,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Home)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeListing: (index)=>dispatch(removeListing(index))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
