@@ -4,7 +4,7 @@ import { TextField, Button, Container } from "@mui/material";
 import cookie from "cookie";
 
 const Login = (props) => {
-  const { setUser } = props;
+  const { setUser, setLoggedInBool } = props;
   
   const navigate = useNavigate();
 
@@ -27,17 +27,16 @@ const Login = (props) => {
     e.preventDefault();
     // set cookie here loggedIn=true;max-age=60*1000
     //if we use the cookie module maxAge- the set time is in seconds, not milliseconds
-    document.cookie = cookie.serialize("loggedIn", "true", {maxAge: 60});
-    document.cookie = cookie.serialize("userName", userState.userName, {maxAage: 60});
+    document.cookie = cookie.serialize("loggedIn", "true", {maxAge: 7200});
+    document.cookie = cookie.serialize("userName", userState.userName, {maxAge: 7200});
     // set loggedIn = true and max-age = 60*1000 (one minute)
     
-    console.log({user: userState.userName})
     let newUser = {
       userName: userState.userName,
       email: "whatAboutBob@xyz.mail"
     }
     setUser(newUser);
-
+    setLoggedInBool(true);
     navigate("/");
   };
 

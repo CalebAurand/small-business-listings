@@ -25,3 +25,10 @@ export const unsetUser = (index) => {
     payload: index
   }
 }
+
+export const setLoggedInBool = (bool) => {
+  return {
+    type: "SET_LOGGEDINBOOL",
+    payload: bool
+  }
+}

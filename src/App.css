@@ -39,10 +39,13 @@
 
 .nav--list{
   color: white;
+  display: flex;
 }
 
 .nav-list-item {
   list-style-type: none;
   color: white;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 

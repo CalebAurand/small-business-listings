@@ -30,4 +30,13 @@ const listings = (state = [], action) => {
   }
 }
 
-export default combineReducers({user, listings})
+const loggedInBool = (state = null, action) => {
+  switch (action.type){
+    case "SET_LOGGEDINBOOL":
+      return action.payload
+    default:
+      return state
+  }
+}
+
+export default combineReducers({user, listings, loggedInBool})

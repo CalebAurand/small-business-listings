@@ -34,18 +34,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 export default function Home(props) {
-  const [tableData, setTableData] = React.useState(props.listings)
   const { listings, user, removeListing } = props;
 
   let cookies = cookie.parse(document.cookie)
-  console.log('cookies', cookies)
   let loggedInBool = cookies.loggedIn;
-  console.log(loggedInBool);
-
-  // const deleteListing = (index) => {
-  //   console.log('trying to remove', index)
-  //   removeListing(index);
-  // }
 
   return (
     <>

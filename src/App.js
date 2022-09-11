@@ -1,5 +1,5 @@
 import './App.css';
-import NavBar from './components/NavBar'
+import NavBar from './containers/NavBar'
 import {BrowserRouter} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './redux/store'
