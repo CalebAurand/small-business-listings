@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/small-business-listings/static/css/main.44187be5.css",
+    "main.js": "/small-business-listings/static/js/main.a5d480d1.js",
+    "static/js/787.47fc8938.chunk.js": "/small-business-listings/static/js/787.47fc8938.chunk.js",
+    "index.html": "/small-business-listings/index.html",
+    "main.44187be5.css.map": "/small-business-listings/static/css/main.44187be5.css.map",
+    "main.a5d480d1.js.map": "/small-business-listings/static/js/main.a5d480d1.js.map",
+    "787.47fc8938.chunk.js.map": "/small-business-listings/static/js/787.47fc8938.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.44187be5.css",
+    "static/js/main.a5d480d1.js"
+  ]
+}
